@@ -4,6 +4,9 @@ object Dependencies {
         val lifecycleRuntimeKtx by lazy {
             "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.AndroidX.lifecycleRuntimeKtx}"
         }
+        val dataStorePreferences by lazy {
+            "androidx.datastore:datastore-preferences:${Versions.AndroidX.dataStorePreferences}"
+        }
     }
 
     object Compose {
@@ -24,6 +27,26 @@ object Dependencies {
          */
         val uiTooling by lazy { "androidx.compose.ui:ui-tooling:${Versions.Compose.compose}" }
         val uiTestManifest by lazy { "androidx.compose.ui:ui-test-manifest:${Versions.Compose.compose}" }
+    }
+
+    object Hilt {
+        val android by lazy { "com.google.dagger:hilt-android:${Versions.hilt}" }
+        val compiler by lazy { "com.google.dagger:hilt-compiler:${Versions.hilt}" }
+
+        /**
+         * Instrument Test
+         */
+        val androidTesting by lazy { "com.google.dagger:hilt-android-testing:${Versions.hilt}" }
+
+    }
+
+    object Retrofit {
+        val retrofit by lazy { "com.squareup.retrofit2:retrofit:${Versions.retrofit}" }
+        val moshi by lazy { "com.squareup.retrofit2:converter-moshi:${Versions.retrofit}" }
+    }
+
+    object Coroutine {
+        val core by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}" }
     }
 
     object Test {

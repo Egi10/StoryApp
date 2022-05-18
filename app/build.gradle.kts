@@ -1,6 +1,8 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -62,4 +64,13 @@ dependencies {
     androidTestImplementation(Dependencies.Compose.uiTestJunit4)
     debugImplementation(Dependencies.Compose.uiTooling)
     debugImplementation(Dependencies.Compose.uiTestManifest)
+    // Hilt
+    implementation(Dependencies.Hilt.android)
+    kapt(Dependencies.Hilt.compiler)
+    // Network
+    implementation(project(Module.network))
+}
+
+kapt {
+    correctErrorTypes = true
 }

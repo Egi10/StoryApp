@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "StoryApp"
 include(":app")
+include(":libraries:network")
+include(":libraries:dataStore")
