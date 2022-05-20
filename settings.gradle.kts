@@ -15,4 +15,6 @@ dependencyResolutionManagement {
 rootProject.name = "StoryApp"
 include(":app")
 include(":libraries:network")
-include(":libraries:dataStore")
+include(":libraries:data-store")
+include(":features:authentication")
+include(":core:common")

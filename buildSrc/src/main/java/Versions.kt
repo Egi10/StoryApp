@@ -1,5 +1,6 @@
 object Versions {
     const val hilt = "2.42"
+    const val hiltNavigation = "1.0.0"
     const val retrofit = "2.9.0"
     const val coroutine = "1.6.0"
 
@@ -7,6 +8,8 @@ object Versions {
         const val coreKtx = "1.7.0"
         const val lifecycleRuntimeKtx = "2.3.1"
         const val dataStorePreferences = "1.0.0"
+        const val appCompat = "1.4.1"
+        const val material = "1.6.0"
     }
 
     object Compose {

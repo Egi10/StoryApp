@@ -7,6 +7,11 @@ object Dependencies {
         val dataStorePreferences by lazy {
             "androidx.datastore:datastore-preferences:${Versions.AndroidX.dataStorePreferences}"
         }
+        val appCompat by lazy { "androidx.appcompat:appcompat:${Versions.AndroidX.appCompat}" }
+        val material by lazy { "com.google.android.material:material:1.6.0" }
+        val viewModel by lazy {
+            "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.lifecycleRuntimeKtx}"
+        }
     }
 
     object Compose {
@@ -38,6 +43,8 @@ object Dependencies {
          */
         val androidTesting by lazy { "com.google.dagger:hilt-android-testing:${Versions.hilt}" }
 
+        val navigation by lazy { "androidx.hilt:hilt-navigation-compose:${Versions.hiltNavigation}" }
+
     }
 
     object Retrofit {
@@ -47,6 +54,8 @@ object Dependencies {
 
     object Coroutine {
         val core by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutine}" }
+        val android by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}" }
+        val test by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutine}" }
     }
 
     object Test {
