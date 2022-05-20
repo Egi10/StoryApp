@@ -1,5 +1,6 @@
 package extensions
 
+import org.gradle.api.artifacts.Dependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
 fun DependencyHandler.implementationCoroutines() {
@@ -22,13 +23,14 @@ fun DependencyHandler.implementationsHilt() {
 }
 
 fun DependencyHandler.implementationCompose() {
-    implementation(Dependencies.Compose.ui)
-    implementation(Dependencies.Compose.material)
-    implementation(Dependencies.Compose.uiToolingPreview)
-    implementation(Dependencies.Compose.activityCompose)
-    androidTestImplementation(Dependencies.Compose.uiTestJunit4)
-    debugImplementation(Dependencies.Compose.uiTooling)
-    debugImplementation(Dependencies.Compose.uiTestManifest)
+    api(Dependencies.Compose.ui)
+    api(Dependencies.Compose.material)
+    api(Dependencies.Compose.uiToolingPreview)
+    api(Dependencies.Compose.activityCompose)
+    debugApi(Dependencies.Compose.uiTooling)
+    debugApi(Dependencies.Compose.uiTestManifest)
+
+    androidTestApi(Dependencies.Compose.uiTestJunit4)
 }
 
 fun DependencyHandler.implementation(dependencyNotation: String) {
@@ -58,6 +60,19 @@ fun DependencyHandler.kaptAndroidTest(dependencyNotation: String) {
 fun DependencyHandler.debugImplementation(dependencyNotation: String) {
     add("debugImplementation", dependencyNotation)
 }
+
+fun DependencyHandler.api(dependencyNotation: Any) {
+    add("api", dependencyNotation)
+}
+
+fun DependencyHandler.debugApi(dependencyNotation: Any) {
+    add("debugApi", dependencyNotation)
+}
+
+fun DependencyHandler.androidTestApi(dependencyNotation: Any) {
+    add("androidTestApi", dependencyNotation)
+}
+
 
 /**
  * To use ksp make sure you have added the ksp plugin

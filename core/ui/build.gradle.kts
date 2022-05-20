@@ -1,24 +1,19 @@
+import extensions.implementationCompose
+
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    kotlin("kapt")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
     compileSdk = ConfigData.compileSdk
 
     defaultConfig {
-        applicationId = "id.buaja.storyapp"
         minSdk = ConfigData.minSdk
         targetSdk = ConfigData.targetSdk
-        versionCode = ConfigData.versionCode
-        versionName = ConfigData.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        vectorDrawables {
-            useSupportLibrary = true
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -52,20 +47,6 @@ android {
 
 dependencies {
 
-    implementation(Dependencies.AndroidX.coreKtx)
-    implementation(Dependencies.AndroidX.lifecycleRuntimeKtx)
-    testImplementation(Dependencies.Test.jUnit)
-    androidTestImplementation(Dependencies.Test.jUnitAndroid)
-    androidTestImplementation(Dependencies.Test.espressoCore)
-    // Hilt
-    implementation(Dependencies.Hilt.android)
-    kapt(Dependencies.Hilt.compiler)
-    // Network
-    implementation(project(Module.network))
-    // Ui
-    implementation(project(Module.Core.ui))
-}
-
-kapt {
-    correctErrorTypes = true
+    // Compose
+    implementationCompose()
 }

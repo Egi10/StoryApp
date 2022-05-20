@@ -51,8 +51,6 @@ dependencies {
     implementation(Dependencies.AndroidX.viewModel)
     // Hilt Navigation
     implementation(Dependencies.Hilt.navigation)
-    // Compose
-    implementationCompose()
     // Coroutine
     implementationCoroutines()
     // Hilt
@@ -63,6 +61,8 @@ dependencies {
     implementation(project(Module.dataStore))
     // Common
     implementation(project(Module.Core.common))
+    // Ui
+    implementation(project(Module.Core.ui))
 }
 
 kapt {

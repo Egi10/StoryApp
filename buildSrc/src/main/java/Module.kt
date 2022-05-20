@@ -4,5 +4,6 @@ object Module {
 
     object Core {
         const val common = ":core:common"
+        const val ui = ":core:ui"
     }
 }
