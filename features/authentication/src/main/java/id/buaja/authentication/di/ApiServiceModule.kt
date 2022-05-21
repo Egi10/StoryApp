@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import id.buaja.authentication.data.source.routes.RegisterService
+import id.buaja.authentication.data.source.routes.AuthenticationService
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
@@ -13,6 +13,6 @@ import javax.inject.Singleton
 class ApiServiceModule {
     @Provides
     @Singleton
-    fun provideRegisterService(retrofit: Retrofit): RegisterService =
-        retrofit.create(RegisterService::class.java)
+    fun provideRegisterService(retrofit: Retrofit): AuthenticationService =
+        retrofit.create(AuthenticationService::class.java)
 }

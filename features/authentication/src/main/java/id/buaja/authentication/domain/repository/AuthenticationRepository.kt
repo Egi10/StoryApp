@@ -1,5 +1,7 @@
 package id.buaja.authentication.domain.repository
 
+import id.buaja.authentication.domain.model.login.Login
+import id.buaja.authentication.domain.model.login.LoginParam
 import id.buaja.authentication.domain.model.register.Register
 import id.buaja.authentication.domain.model.register.RegisterParam
 import id.buaja.common.result.Result
@@ -12,4 +14,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface AuthenticationRepository {
     fun register(registerParam: RegisterParam): Flow<Result<Register>>
+    fun login(loginParam: LoginParam): Flow<Result<Login>>
 }

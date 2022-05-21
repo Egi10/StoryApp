@@ -1,4 +1,4 @@
-package id.buaja.authentication.data.source.model
+package id.buaja.authentication.data.source.model.register
 
 
 import com.squareup.moshi.Json

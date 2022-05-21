@@ -5,6 +5,8 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
+import id.buaja.authentication.domain.usecase.login.LoginUseCase
+import id.buaja.authentication.domain.usecase.login.LoginUseCaseImpl
 import id.buaja.authentication.domain.usecase.register.RegisterUseCase
 import id.buaja.authentication.domain.usecase.register.RegisterUseCaseImpl
 
@@ -21,4 +23,10 @@ abstract class UseCaseModule {
     abstract fun bindsRegisterUseCase(
         registerUseCaseImpl: RegisterUseCaseImpl
     ): RegisterUseCase
+
+    @Binds
+    @ViewModelScoped
+    abstract fun bindsLoginUseCase(
+        loginUseCaseImpl: LoginUseCaseImpl
+    ): LoginUseCase
 }
