@@ -41,6 +41,8 @@ dependencies {
     // Hilt
     implementation(Dependencies.Hilt.android)
     kapt(Dependencies.Hilt.compiler)
+    // Common
+    implementation(project(Module.Core.common))
 }
 
 kapt {

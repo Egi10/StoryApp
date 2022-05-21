@@ -2,7 +2,7 @@ package id.buaja.authentication.ui.login.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import id.buaja.authentication.login.ui.LoginRoute
+import id.buaja.authentication.ui.login.LoginRoute
 import id.buaja.navigation.StoryNavigationDestination
 
 /**
@@ -18,13 +18,15 @@ object LoginNavigation : StoryNavigationDestination {
 }
 
 fun NavGraphBuilder.loginGraph(
-    navigationToSignUp: (Int) -> Unit
+    navigationToSignUp: (Int) -> Unit,
+    navigationToHome: () -> Unit
 ) {
     composable(
         route = LoginNavigation.route,
     ) {
         LoginRoute(
-            navigationToSignUp = navigationToSignUp
+            navigationToSignUp = navigationToSignUp,
+            navigationToHome = navigationToHome
         )
     }
 }

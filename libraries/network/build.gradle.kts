@@ -48,6 +48,7 @@ dependencies {
     implementation(Dependencies.Coroutine.core)
     // DataStore
     implementation(project(Module.dataStore))
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
 }
 
 kapt {

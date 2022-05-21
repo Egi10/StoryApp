@@ -10,5 +10,6 @@ object Module {
 
     object Features {
         const val authentication = ":features:authentication"
+        const val home = ":features:home"
     }
 }

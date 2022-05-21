@@ -7,9 +7,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import id.buaja.datastore.DataStoreManager
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.runBlocking
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
@@ -27,8 +27,11 @@ import javax.inject.Singleton
 class NetworkModule {
     @Provides
     @Singleton
-    fun provideOkhttpClient(dataStoreManager: DataStoreManager): OkHttpClient =
-        OkHttpClient.Builder()
+    fun provideOkhttpClient(dataStoreManager: DataStoreManager): OkHttpClient {
+        val logging = HttpLoggingInterceptor()
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+
+        return OkHttpClient.Builder()
             .connectTimeout(60, TimeUnit.SECONDS)
             .readTimeout(60L, TimeUnit.SECONDS)
             .writeTimeout(60L, TimeUnit.SECONDS)
@@ -44,11 +47,14 @@ class NetworkModule {
                     request.header("Authorization", "Bearer ${dataStoreManager.getToken()}")
                 }
 
-                request.method(original.method(), original.body())
+                request.method(original.method, original.body)
 
                 return@addInterceptor chain.proceed(request.build())
             }
+            .addInterceptor(logging)
             .build()
+    }
+
 
     @Provides
     @Singleton

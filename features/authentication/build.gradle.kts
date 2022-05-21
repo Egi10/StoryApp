@@ -7,6 +7,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
+    id("com.google.devtools.ksp").version("1.6.10-1.0.4")
 }
 
 android {
@@ -73,6 +74,7 @@ dependencies {
     implementation(project(Module.Core.ui))
     // Navigation
     implementation(project(Module.Core.navigation))
+    ksp("com.squareup.moshi:moshi-kotlin-codegen:1.13.0")
 }
 
 kapt {

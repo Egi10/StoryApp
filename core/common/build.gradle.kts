@@ -44,6 +44,8 @@ dependencies {
     implementationCoroutines()
     // Hilt
     implementationsHilt()
+    // Retrofit
+    implementation(Dependencies.Retrofit.retrofit)
 }
 
 kapt {

@@ -1,11 +1,14 @@
 package id.buaja.ui.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material.Button
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,7 +31,8 @@ fun StoryButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
     text: String,
-    enabled: Boolean = false
+    enabled: Boolean = false,
+    loading: Boolean = false
 ) {
     Button(
         modifier = modifier
@@ -36,13 +40,22 @@ fun StoryButton(
                 minHeight = 56.dp
             ),
         onClick = onClick,
-        enabled = enabled
-    ) {
-        Text(
-            text = text,
-            fontSize = 16.sp
-        )
-    }
+        enabled = enabled,
+        content = {
+            if (loading) {
+                CircularProgressIndicator(
+                    modifier = Modifier
+                        .size(24.dp),
+                    color = Color.White
+                )
+            } else {
+                Text(
+                    text = text,
+                    fontSize = 16.sp
+                )
+            }
+        }
+    )
 }
 
 @Preview
@@ -51,7 +64,19 @@ private fun StoryButtonPreview() {
     StoryButton(
         modifier = Modifier
             .fillMaxWidth(),
-        onClick = {  },
+        onClick = { },
         text = "Sign Up"
+    )
+}
+
+@Preview
+@Composable
+private fun StoryButtonLoadingPreview() {
+    StoryButton(
+        modifier = Modifier
+            .fillMaxWidth(),
+        onClick = { },
+        text = "Sign Up",
+        loading = true
     )
 }

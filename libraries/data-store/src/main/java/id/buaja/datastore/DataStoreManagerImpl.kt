@@ -3,15 +3,19 @@ package id.buaja.datastore
 import android.content.Context
 import androidx.datastore.preferences.core.edit
 import dagger.hilt.android.qualifiers.ApplicationContext
+import id.buaja.common.di.IoDispatcher
 import id.buaja.datastore.extensions.datastore
 import id.buaja.datastore.utils.PreferencesKey
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 
 class DataStoreManagerImpl @Inject constructor(
-    @ApplicationContext private val context: Context
+    @ApplicationContext private val context: Context,
+    @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : DataStoreManager {
     override suspend fun saveToken(token: String) {
         context.datastore.edit {
@@ -28,6 +32,6 @@ class DataStoreManagerImpl @Inject constructor(
     override fun getToken(): Flow<String> {
         return context.datastore.data.map {
             it[PreferencesKey.TOKEN] ?: ""
-        }
+        }.flowOn(ioDispatcher)
     }
 }

@@ -19,6 +19,6 @@ data class RegisterScreenUiState(
 
 sealed interface RegisterUiState {
     data class Success(val register: Register) : RegisterUiState
-    data class Error(val exception: Throwable? = null) : RegisterUiState
+    data class Error(val exception: String? = null) : RegisterUiState
     object Loading : RegisterUiState
 }

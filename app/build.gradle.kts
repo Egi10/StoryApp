@@ -1,3 +1,5 @@
+import extensions.implementation
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -60,6 +62,8 @@ dependencies {
     // Hilt
     implementation(Dependencies.Hilt.android)
     kapt(Dependencies.Hilt.compiler)
+    // ViewModel
+    implementation(Dependencies.AndroidX.viewModel)
     // Network
     implementation(project(Module.network))
     // Ui
@@ -68,6 +72,10 @@ dependencies {
     implementation(project(Module.Core.navigation))
     // Authentication
     implementation(project(Module.Features.authentication))
+    // Data Store
+    implementation(project(Module.dataStore))
+    // Home
+    implementation(project(Module.Features.home))
 }
 
 kapt {

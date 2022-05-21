@@ -3,6 +3,7 @@ package id.buaja.authentication.ui.register
 import android.util.Log
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -38,20 +39,23 @@ fun RegisterScreen(
     submit: () -> Unit,
     enableSubmit: Boolean
 ) {
-    when (registerUiState) {
-        is RegisterUiState.Loading -> {
-            Log.d("Data", "Loading")
-        }
+    LaunchedEffect(registerUiState) {
+        when (registerUiState) {
+            is RegisterUiState.Loading -> {
+                Log.d("Data", "Loading")
+            }
 
-        is RegisterUiState.Success -> {
-            Log.d("Data", "Sukses ${registerUiState.register.message}")
-        }
+            is RegisterUiState.Success -> {
+                Log.d("Data", "Sukses ${registerUiState.register.message}")
+            }
 
-        is RegisterUiState.Error -> {
-            Log.d("Data", "Error ${registerUiState.exception?.message}")
-        }
-        else -> {
-            /** Null */
+            is RegisterUiState.Error -> {
+                Log.d("Data", "Error ${registerUiState.exception}")
+            }
+
+            else -> {
+                /** Null */
+            }
         }
     }
 
