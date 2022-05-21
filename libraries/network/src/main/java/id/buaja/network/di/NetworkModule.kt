@@ -1,5 +1,7 @@
 package id.buaja.network.di
 
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -50,10 +52,20 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(httpClient: OkHttpClient): Retrofit =
-        Retrofit.Builder()
-            .baseUrl("https://story-api.dicoding.dev/v1")
-            .addConverterFactory(MoshiConverterFactory.create())
+    fun provideRetrofit(httpClient: OkHttpClient): Retrofit {
+        /**
+         * Added a KotlinJsonAdapterFactory to do a pojo to json converter in moshi
+         * if calling Body in Retrofit.
+         */
+        val moshi = Moshi.Builder()
+            .addLast(KotlinJsonAdapterFactory())
+            .build()
+
+        return Retrofit.Builder()
+            .baseUrl("https://story-api.dicoding.dev/v1/")
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
             .client(httpClient)
             .build()
+    }
+
 }

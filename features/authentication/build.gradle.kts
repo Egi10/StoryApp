@@ -1,6 +1,5 @@
 import extensions.implementation
 import extensions.implementationCoroutines
-import extensions.implementationCompose
 import extensions.implementationsHilt
 
 plugins {
@@ -37,6 +36,17 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.Compose.compose
+    }
+    packagingOptions {
+        resources {
+            excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
 }
 
 dependencies {
@@ -49,8 +59,6 @@ dependencies {
     androidTestImplementation(Dependencies.Test.espressoCore)
     // ViewModel
     implementation(Dependencies.AndroidX.viewModel)
-    // Hilt Navigation
-    implementation(Dependencies.Hilt.navigation)
     // Coroutine
     implementationCoroutines()
     // Hilt
@@ -63,6 +71,8 @@ dependencies {
     implementation(project(Module.Core.common))
     // Ui
     implementation(project(Module.Core.ui))
+    // Navigation
+    implementation(project(Module.Core.navigation))
 }
 
 kapt {

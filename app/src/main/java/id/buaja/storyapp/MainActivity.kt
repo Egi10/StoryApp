@@ -3,26 +3,16 @@ package id.buaja.storyapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.ui.Modifier
-import id.buaja.storyapp.ui.theme.StoryAppTheme
+import dagger.hilt.android.AndroidEntryPoint
+import id.buaja.storyapp.ui.StoryApp
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            StoryAppTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier
-                        .fillMaxSize(),
-                    color = MaterialTheme.colors.background
-                ) {
 
-                }
-            }
+        setContent {
+            StoryApp()
         }
     }
 }

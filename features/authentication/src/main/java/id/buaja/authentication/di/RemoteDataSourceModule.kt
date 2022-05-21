@@ -1,15 +1,17 @@
 package id.buaja.authentication.di
 
+import dagger.Binds
 import dagger.Module
-import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import id.buaja.authentication.register.data.source.RemoteRegisterDataSource
 import id.buaja.authentication.register.data.source.RemoteRegisterDataSourceImpl
 import javax.inject.Singleton
 
 @Module
-@Singleton
+@InstallIn(SingletonComponent::class)
 abstract class RemoteDataSourceModule {
-    @Provides
+    @Binds
     @Singleton
     abstract fun provideRemoteRegisterDataSource(
         remoteRegisterDataSourceImpl: RemoteRegisterDataSourceImpl

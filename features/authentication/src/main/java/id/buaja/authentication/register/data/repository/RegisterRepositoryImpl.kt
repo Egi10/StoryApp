@@ -1,6 +1,7 @@
 package id.buaja.authentication.register.data.repository
 
 import id.buaja.authentication.register.data.source.RemoteRegisterDataSource
+import id.buaja.authentication.register.data.source.model.mapToRegister
 import id.buaja.authentication.register.data.source.model.mapToRequest
 import id.buaja.authentication.register.domain.model.Register
 import id.buaja.authentication.register.domain.model.RegisterParam
@@ -25,10 +26,7 @@ class RegisterRepositoryImpl @Inject constructor(
         return remoteRegisterDataSource.register(
             request = request
         ).map {
-            Register(
-                error = it.error,
-                message = it.message
-            )
+            it.mapToRegister()
         }.asResult()
     }
 }

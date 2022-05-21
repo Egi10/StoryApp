@@ -5,10 +5,13 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import id.buaja.authentication.register.domain.model.RegisterParam
 import id.buaja.authentication.register.domain.usecase.RegisterUseCase
+import id.buaja.authentication.register.ui.model.RegisterEventState
 import id.buaja.authentication.register.ui.model.RegisterScreenUiState
 import id.buaja.authentication.register.ui.model.RegisterUiState
 import id.buaja.common.result.Result
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,7 +27,61 @@ class RegisterViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(RegisterScreenUiState())
     val uiState = _uiState.asStateFlow()
 
-    fun register() {
+    fun onEvent(event: RegisterEventState) {
+        when (event) {
+            is RegisterEventState.EmailChanged -> {
+                _uiState.update {
+                    it.copy(
+                        email = event.email
+                    )
+                }
+            }
+
+            is RegisterEventState.EmailValidation -> {
+                _uiState.update {
+                    it.copy(
+                        emailError = event.validation
+                    )
+                }
+            }
+
+            is RegisterEventState.NameChanged -> {
+                _uiState.update {
+                    it.copy(
+                        name = event.name
+                    )
+                }
+            }
+
+            is RegisterEventState.PasswordChanged -> {
+                _uiState.update {
+                    it.copy(
+                        password = event.password
+                    )
+                }
+            }
+
+            is RegisterEventState.PasswordValidation -> {
+                _uiState.update {
+                    it.copy(
+                        passwordError = event.validation
+                    )
+                }
+            }
+
+            is RegisterEventState.Submit -> {
+                register()
+            }
+        }
+    }
+
+    fun isEnableSubmit(): Boolean {
+        return !_uiState.value.passwordError && !_uiState.value.emailError
+                && _uiState.value.email.isNotEmpty() && _uiState.value.name.isNotEmpty()
+                && _uiState.value.password.isNotEmpty()
+    }
+
+    private fun register() {
         viewModelScope.launch {
             registerUseCase.invoke(
                 registerParam = RegisterParam(
@@ -45,40 +102,16 @@ class RegisterViewModel @Inject constructor(
                     }
 
                     is Result.Error -> {
-                        RegisterUiState.Error
+                        RegisterUiState.Error(it.exception)
                     }
                 }
 
-                _uiState.update { registerScreenUiState ->
-                    registerScreenUiState.copy(
+                _uiState.update { uiState ->
+                    uiState.copy(
                         registerState = registerUiState
                     )
                 }
             }
-        }
-    }
-
-    fun setEmail(email: String) {
-        _uiState.update {
-            it.copy(
-                email = email
-            )
-        }
-    }
-
-    fun setName(name: String) {
-        _uiState.update {
-            it.copy(
-                name = name
-            )
-        }
-    }
-
-    fun setPassword(password: String) {
-        _uiState.update {
-            it.copy(
-                password = password
-            )
         }
     }
 }

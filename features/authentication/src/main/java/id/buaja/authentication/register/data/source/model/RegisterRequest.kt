@@ -7,11 +7,11 @@ import id.buaja.authentication.register.domain.model.RegisterParam
 
 @JsonClass(generateAdapter = true)
 data class RegisterRequest(
-    @Json(name = "email")
+    @field:Json(name = "email")
     val email: String,
-    @Json(name = "name")
+    @field:Json(name = "name")
     val name: String,
-    @Json(name = "password")
+    @field:Json(name = "password")
     val password: String
 )
 

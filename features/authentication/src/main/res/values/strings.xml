@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="welcome">Welcome,</string>
+    <string name="message_welcome">Come on, join and immediately share your story with others</string>
+    <string name="email">Email</string>
+    <string name="placeholder_email">Enter your email</string>
+    <string name="name">Name</string>
+    <string name="placeholder_name">Enter your name</string>
+    <string name="password">Password</string>
+    <string name="placeholder_password">Enter your password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="message_email_error">Enter email correctly</string>
+    <string name="message_error_password">Enter a password of at least 8</string>
+</resources>

@@ -1,4 +1,6 @@
 object Dependencies {
+    val moshiKotlin by lazy { "com.squareup.moshi:moshi-kotlin:${Versions.moshiKotlin}" }
+
     object AndroidX {
         val coreKtx by lazy { "androidx.core:core-ktx:${Versions.AndroidX.coreKtx}" }
         val lifecycleRuntimeKtx by lazy {
@@ -32,6 +34,11 @@ object Dependencies {
          */
         val uiTooling by lazy { "androidx.compose.ui:ui-tooling:${Versions.Compose.compose}" }
         val uiTestManifest by lazy { "androidx.compose.ui:ui-test-manifest:${Versions.Compose.compose}" }
+
+        /**
+         * Navigation
+         */
+        val navigation by lazy { "androidx.navigation:navigation-compose:${Versions.Compose.navigation}" }
     }
 
     object Hilt {

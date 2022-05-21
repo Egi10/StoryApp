@@ -36,18 +36,13 @@ android {
 
 dependencies {
 
+    // Hilt Navigation
+    api(Dependencies.Hilt.navigation)
+    // Navigation
+    api(Dependencies.Compose.navigation)
     // Hilt
     implementation(Dependencies.Hilt.android)
     kapt(Dependencies.Hilt.compiler)
-    // Moshi
-    implementation(Dependencies.moshiKotlin)
-    // Retrofit
-    api(Dependencies.Retrofit.retrofit)
-    api(Dependencies.Retrofit.moshi)
-    // Coroutines
-    implementation(Dependencies.Coroutine.core)
-    // DataStore
-    implementation(project(Module.dataStore))
 }
 
 kapt {

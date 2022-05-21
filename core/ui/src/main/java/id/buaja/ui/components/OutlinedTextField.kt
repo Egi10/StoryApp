@@ -101,14 +101,17 @@ fun StoryOutlinedTextField(
                     VisualTransformation.None
                 }
             },
-            trailingIcon = {
-                TrailingIconPassword(
-                    inputType = inputType,
-                    passwordVisibility = passwordVisibility,
-                    onClick = {
-                        passwordVisibility = !passwordVisibility
-                    }
-                )
+            trailingIcon = if (inputType == InputType.password) {
+                {
+                    TrailingIconPassword(
+                        passwordVisibility = passwordVisibility,
+                        onClick = {
+                            passwordVisibility = !passwordVisibility
+                        }
+                    )
+                }
+            } else {
+                null
             }
         )
 
@@ -137,27 +140,22 @@ private fun ErrorText(errorMessage: String) {
 
 @Composable
 private fun TrailingIconPassword(
-    inputType: InputType,
     passwordVisibility: Boolean,
     onClick: () -> Unit
 ) {
-    when (inputType) {
-        InputType.password -> {
-            IconButton(
-                onClick = onClick
-            ) {
-                val image = if (passwordVisibility) {
-                    R.drawable.ic_visibility_24
-                } else {
-                    R.drawable.ic_visibility_off_24
-                }
-
-                Icon(
-                    painter = painterResource(id = image),
-                    contentDescription = null
-                )
-            }
+    IconButton(
+        onClick = onClick
+    ) {
+        val image = if (passwordVisibility) {
+            R.drawable.ic_visibility_24
+        } else {
+            R.drawable.ic_visibility_off_24
         }
+
+        Icon(
+            painter = painterResource(id = image),
+            contentDescription = null
+        )
     }
 }
 

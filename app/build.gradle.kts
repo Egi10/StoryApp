@@ -64,6 +64,10 @@ dependencies {
     implementation(project(Module.network))
     // Ui
     implementation(project(Module.Core.ui))
+    // Navigation
+    implementation(project(Module.Core.navigation))
+    // Authentication
+    implementation(project(Module.Features.authentication))
 }
 
 kapt {

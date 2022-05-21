@@ -7,9 +7,10 @@ import id.buaja.datastore.extensions.datastore
 import id.buaja.datastore.utils.PreferencesKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
 
-class DataStoreManagerImpl(
+class DataStoreManagerImpl @Inject constructor(
     @ApplicationContext private val context: Context
 ) : DataStoreManager {
     override suspend fun saveToken(token: String) {

@@ -9,15 +9,16 @@ import id.buaja.authentication.register.domain.model.Register
 
 data class RegisterScreenUiState(
     val email: String = "",
+    val emailError: Boolean = false,
     val name: String = "",
     val password: String = "",
+    val passwordError: Boolean = false,
 
     val registerState: RegisterUiState? = null
 )
 
 sealed interface RegisterUiState {
     data class Success(val register: Register) : RegisterUiState
-    object Error : RegisterUiState
+    data class Error(val exception: Throwable? = null) : RegisterUiState
     object Loading : RegisterUiState
 }
-

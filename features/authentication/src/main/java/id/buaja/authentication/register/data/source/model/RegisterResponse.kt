@@ -7,9 +7,9 @@ import id.buaja.authentication.register.domain.model.Register
 
 @JsonClass(generateAdapter = true)
 data class RegisterResponse(
-    @Json(name = "error")
+    @field:Json(name = "error")
     val error: Boolean,
-    @Json(name = "message")
+    @field:Json(name = "message")
     val message: String
 )
 

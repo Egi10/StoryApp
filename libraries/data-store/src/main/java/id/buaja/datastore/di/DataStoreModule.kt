@@ -13,5 +13,7 @@ import javax.inject.Singleton
 abstract class DataStoreModule {
     @Binds
     @Singleton
-    abstract fun provideDataStoreManager(dataStoreManagerImpl: DataStoreManagerImpl): DataStoreManager
+    abstract fun provideDataStoreManager(
+        dataStoreManagerImpl: DataStoreManagerImpl
+    ): DataStoreManager
 }
