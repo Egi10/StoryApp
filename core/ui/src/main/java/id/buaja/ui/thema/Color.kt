@@ -1,4 +1,4 @@
-package id.buaja.storyapp.ui.theme
+package id.buaja.ui.thema
 
 import androidx.compose.ui.graphics.Color
 

@@ -4,8 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import id.buaja.authentication.register.data.source.RemoteRegisterDataSource
-import id.buaja.authentication.register.data.source.RemoteRegisterDataSourceImpl
+import id.buaja.authentication.data.source.RemoteDataSource
+import id.buaja.authentication.data.source.RemoteDataSourceImpl
 import javax.inject.Singleton
 
 @Module
@@ -14,6 +14,6 @@ abstract class RemoteDataSourceModule {
     @Binds
     @Singleton
     abstract fun provideRemoteRegisterDataSource(
-        remoteRegisterDataSourceImpl: RemoteRegisterDataSourceImpl
-    ): RemoteRegisterDataSource
+        remoteDataSourceImpl: RemoteDataSourceImpl
+    ): RemoteDataSource
 }

@@ -4,8 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import id.buaja.authentication.register.data.repository.RegisterRepositoryImpl
-import id.buaja.authentication.register.domain.register.RegisterRepository
+import id.buaja.authentication.data.repository.AuthenticationRepositoryImpl
+import id.buaja.authentication.domain.repository.AuthenticationRepository
 import javax.inject.Singleton
 
 /**
@@ -19,6 +19,6 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindsRegisterRepository(
-        registerRepositoryImpl: RegisterRepositoryImpl
-    ): RegisterRepository
+        registerRepositoryImpl: AuthenticationRepositoryImpl
+    ): AuthenticationRepository
 }

@@ -4,7 +4,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import id.buaja.authentication.register.data.source.routes.RegisterService
+import id.buaja.authentication.data.source.routes.RegisterService
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
