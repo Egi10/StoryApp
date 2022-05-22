@@ -105,4 +105,8 @@ class LoginViewModel @Inject constructor(
             }
         }
     }
+
+    fun clearState() {
+        _uiState.value = LoginScreenUiState()
+    }
 }

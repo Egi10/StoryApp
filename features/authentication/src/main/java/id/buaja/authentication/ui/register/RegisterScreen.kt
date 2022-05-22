@@ -1,11 +1,10 @@
 package id.buaja.authentication.ui.register
 
-import android.util.Log
 import androidx.compose.foundation.layout.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,6 +16,7 @@ import id.buaja.ui.components.InputType
 import id.buaja.ui.components.StoryButton
 import id.buaja.ui.components.StoryOutlinedTextField
 import id.buaja.ui.extensions.Space
+import id.buaja.ui.extensions.toast
 
 /**
  * Created by Julsapargi Nursam on 5/20/22.
@@ -37,20 +37,32 @@ fun RegisterScreen(
     onPasswordChange: (String) -> Unit,
     onPasswordValidation: (Boolean) -> Unit,
     submit: () -> Unit,
-    enableSubmit: Boolean
+    enableSubmit: Boolean,
+    navigationToLogin: () -> Unit
 ) {
+    val context = LocalContext.current
+    var loading by remember {
+        mutableStateOf(false)
+    }
+
     LaunchedEffect(registerUiState) {
         when (registerUiState) {
             is RegisterUiState.Loading -> {
-                Log.d("Data", "Loading")
+                loading = true
             }
 
             is RegisterUiState.Success -> {
-                Log.d("Data", "Sukses ${registerUiState.register.message}")
+                loading = false
+
+                context.toast(registerUiState.register.message)
+
+                navigationToLogin.invoke()
             }
 
             is RegisterUiState.Error -> {
-                Log.d("Data", "Error ${registerUiState.exception}")
+                loading = false
+
+                registerUiState.exception?.let { context.toast(it) }
             }
 
             else -> {
@@ -116,7 +128,8 @@ fun RegisterScreen(
                     .fillMaxWidth(),
                 onClick = submit,
                 text = stringResource(R.string.sign_up),
-                enabled = enableSubmit
+                enabled = enableSubmit,
+                loading = loading
             )
         }
     }
@@ -141,6 +154,7 @@ private fun RegisterScreenPreview() {
         onPasswordChange = { },
         onPasswordValidation = { },
         submit = { },
-        enableSubmit = false
+        enableSubmit = false,
+        navigationToLogin = { }
     )
 }

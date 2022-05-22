@@ -21,7 +21,10 @@ fun LoginRoute(
     LoginScreen(
         uiState = uiState.value.loginState,
         enableLogin = viewModel.isEnableSubmit(),
-        navigationToSignUp = navigationToSignUp,
+        navigationToSignUp = {
+            viewModel.clearState()
+            navigationToSignUp.invoke(it)
+        },
         email = uiState.value.email,
         isErrorEmail = uiState.value.emailError,
         onEmailChange = {

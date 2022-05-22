@@ -10,6 +10,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -18,14 +19,18 @@ class DataStoreManagerImpl @Inject constructor(
     @IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) : DataStoreManager {
     override suspend fun saveToken(token: String) {
-        context.datastore.edit {
-            it[PreferencesKey.TOKEN] = token
+        withContext(ioDispatcher) {
+            context.datastore.edit {
+                it[PreferencesKey.TOKEN] = token
+            }
         }
     }
 
     override suspend fun deleteToken() {
-        context.datastore.edit {
-            it.remove(PreferencesKey.TOKEN)
+        withContext(ioDispatcher) {
+            context.datastore.edit {
+                it.remove(PreferencesKey.TOKEN)
+            }
         }
     }
 

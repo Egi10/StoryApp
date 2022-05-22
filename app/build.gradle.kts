@@ -76,6 +76,8 @@ dependencies {
     implementation(project(Module.dataStore))
     // Home
     implementation(project(Module.Features.home))
+    // Splash
+    implementation(project(Module.Features.splash))
 }
 
 kapt {

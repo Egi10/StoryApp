@@ -20,7 +20,7 @@ import id.buaja.home.R
 
 @Composable
 fun HomeScreen(
-
+    navigationToLogin: (Int) -> Unit
 ) {
     var showMenu by remember {
         mutableStateOf(false)
@@ -58,7 +58,8 @@ fun HomeScreen(
                                 end = 30.dp
                             ),
                             onClick = {
-
+                                showMenu = false
+                                navigationToLogin.invoke(it)
                             }
                         )
                     }

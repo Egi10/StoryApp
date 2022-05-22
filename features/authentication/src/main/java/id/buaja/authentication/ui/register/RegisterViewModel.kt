@@ -114,4 +114,8 @@ class RegisterViewModel @Inject constructor(
             }
         }
     }
+
+    fun clearState() {
+        _uiState.value = RegisterScreenUiState()
+    }
 }

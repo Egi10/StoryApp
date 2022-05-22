@@ -17,10 +17,14 @@ object RegisterNavigation : StoryNavigationDestination {
         get() = "register_destination"
 }
 
-fun NavGraphBuilder.registerGraph() {
+fun NavGraphBuilder.registerGraph(
+    navigationToLogin: () -> Unit
+) {
     composable(
         route = RegisterNavigation.route
     ) {
-        RegisterRoute()
+        RegisterRoute(
+            navigationToLogin = navigationToLogin
+        )
     }
 }

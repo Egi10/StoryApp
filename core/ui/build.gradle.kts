@@ -1,3 +1,4 @@
+import extensions.implementation
 import extensions.implementationCompose
 
 plugins {
@@ -49,4 +50,6 @@ dependencies {
 
     // Compose
     implementationCompose()
+    // ViewModel
+    api(Dependencies.AndroidX.viewModel)
 }

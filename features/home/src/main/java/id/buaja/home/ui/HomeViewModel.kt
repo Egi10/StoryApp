@@ -1,4 +1,4 @@
-package id.buaja.storyapp.ui
+package id.buaja.home.ui
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -12,23 +12,18 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
- * Created by Julsapargi Nursam on 5/21/22.
+ * Created by Julsapargi Nursam on 5/22/22.
  * Mobile Engineer - Android
  */
 
 @HiltViewModel
-class StoryAppViewModel @Inject constructor(
-    dataStoreManager: DataStoreManager,
+class HomeViewModel @Inject constructor(
+    private val dataStoreManager: DataStoreManager
 ) : ViewModel() {
 
-    var isLogin by mutableStateOf(false)
-
-    init {
+    fun clearToken() {
         viewModelScope.launch {
-            dataStoreManager.getToken()
-                .collect {
-                    isLogin = it.isNotEmpty()
-                }
+            dataStoreManager.deleteToken()
         }
     }
 }

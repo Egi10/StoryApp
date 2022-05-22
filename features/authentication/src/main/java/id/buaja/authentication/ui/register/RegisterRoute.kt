@@ -12,7 +12,8 @@ import id.buaja.authentication.ui.register.model.RegisterEventState
 
 @Composable
 fun RegisterRoute(
-    viewModel: RegisterViewModel = hiltViewModel()
+    viewModel: RegisterViewModel = hiltViewModel(),
+    navigationToLogin: () -> Unit
 ) {
     val uiState = viewModel.uiState.collectAsState()
 
@@ -41,6 +42,10 @@ fun RegisterRoute(
         enableSubmit = viewModel.isEnableSubmit(),
         submit = {
             viewModel.onEvent(RegisterEventState.Submit)
+        },
+        navigationToLogin = {
+            viewModel.clearState()
+            navigationToLogin.invoke()
         }
     )
 }

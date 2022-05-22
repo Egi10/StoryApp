@@ -8,8 +8,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-import id.buaja.authentication.ui.login.navigation.LoginNavigation
-import id.buaja.home.navigation.HomeNavigation
+import id.buaja.splash.navigation.SplashNavigation
 import id.buaja.storyapp.navigation.StoryNavHost
 import id.buaja.ui.thema.StoryAppTheme
 
@@ -19,19 +18,9 @@ import id.buaja.ui.thema.StoryAppTheme
  */
 
 @Composable
-fun StoryApp(
-    viewModel: StoryAppViewModel = hiltViewModel()
-) {
+fun StoryApp() {
     StoryAppTheme {
         val navController = rememberNavController()
-
-        val token = viewModel.tokenFlow.collectAsState(initial = "")
-
-        val startDestination = if (token.value.isNotEmpty()) {
-            HomeNavigation.route
-        } else {
-            LoginNavigation.route
-        }
 
         // A surface container using the 'background' color from the theme
         Surface(
@@ -41,7 +30,7 @@ fun StoryApp(
         ) {
             StoryNavHost(
                 navController = navController,
-                startDestination = startDestination
+                startDestination = SplashNavigation.route,
             )
         }
     }

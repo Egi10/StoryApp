@@ -17,10 +17,16 @@ object HomeNavigation : StoryNavigationDestination {
         get() = "destination_home"
 }
 
-fun NavGraphBuilder.homeGraph() {
+fun NavGraphBuilder.homeGraph(
+    navigationToLogin: () -> Unit
+) {
     composable(
         route = HomeNavigation.route
     ) {
-        HomeRoute()
+        HomeRoute(
+            navigationToLogin = {
+                navigationToLogin.invoke()
+            }
+        )
     }
 }
