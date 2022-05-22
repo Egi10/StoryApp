@@ -6,11 +6,11 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import id.buaja.common.di.IoDispatcher
 import id.buaja.datastore.extensions.datastore
 import id.buaja.datastore.utils.PreferencesKey
-import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -38,5 +38,10 @@ class DataStoreManagerImpl @Inject constructor(
         return context.datastore.data.map {
             it[PreferencesKey.TOKEN] ?: ""
         }.flowOn(ioDispatcher)
+    }
+
+    override suspend fun getTokens(): String {
+        val data = context.datastore.data.first()
+        return data[PreferencesKey.TOKEN] ?: ""
     }
 }

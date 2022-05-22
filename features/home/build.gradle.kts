@@ -48,14 +48,22 @@ android {
 }
 
 dependencies {
+
+    // Hilt
+    implementationsHilt()
+    // Paging
+    implementation(Dependencies.AndroidX.paging)
+    implementation(Dependencies.Compose.paging)
+    // Coil
+    implementation(Dependencies.coil)
     // Ui
     implementation(project(Module.Core.ui))
     // Navigation
     implementation(project(Module.Core.navigation))
     // Data Store
     implementation(project(Module.dataStore))
-    // Hilt
-    implementationsHilt()
+    // Network
+    implementation(project(Module.network))
 }
 
 kapt {

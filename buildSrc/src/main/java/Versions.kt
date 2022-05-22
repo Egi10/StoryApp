@@ -4,6 +4,7 @@ object Versions {
     const val retrofit = "2.9.0"
     const val coroutine = "1.6.0"
     const val moshiKotlin = "1.13.0"
+    const val coil = "2.1.0"
 
     object AndroidX {
         const val coreKtx = "1.7.0"
@@ -11,12 +12,14 @@ object Versions {
         const val dataStorePreferences = "1.0.0"
         const val appCompat = "1.4.1"
         const val material = "1.6.0"
+        const val paging = "3.1.1"
     }
 
     object Compose {
         const val compose = "1.1.1"
         const val activityCompose = "1.3.1"
         const val navigation = "2.4.2"
+        const val paging = "1.0.0-alpha14"
     }
 
     object Test {

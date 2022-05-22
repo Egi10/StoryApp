@@ -1,5 +1,6 @@
 object Dependencies {
     val moshiKotlin by lazy { "com.squareup.moshi:moshi-kotlin:${Versions.moshiKotlin}" }
+    val coil by lazy { "io.coil-kt:coil-compose:${Versions.coil}" }
 
     object AndroidX {
         val coreKtx by lazy { "androidx.core:core-ktx:${Versions.AndroidX.coreKtx}" }
@@ -14,6 +15,7 @@ object Dependencies {
         val viewModel by lazy {
             "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.lifecycleRuntimeKtx}"
         }
+        val paging by lazy { "androidx.paging:paging-runtime:${Versions.AndroidX.paging}" }
     }
 
     object Compose {
@@ -23,6 +25,7 @@ object Dependencies {
         val activityCompose by lazy {
             "androidx.activity:activity-compose:${Versions.Compose.activityCompose}"
         }
+        val paging by lazy { "androidx.paging:paging-compose:${Versions.Compose.paging}" }
 
         /**
          * Test Compose

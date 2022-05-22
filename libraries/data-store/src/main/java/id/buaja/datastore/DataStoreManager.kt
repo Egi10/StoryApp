@@ -6,4 +6,5 @@ interface DataStoreManager {
     suspend fun saveToken(token: String)
     suspend fun deleteToken()
     fun getToken(): Flow<String>
+    suspend fun getTokens(): String
 }

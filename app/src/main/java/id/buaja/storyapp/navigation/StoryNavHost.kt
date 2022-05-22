@@ -36,24 +36,20 @@ fun StoryNavHost(
             navigationToHome = {
                 navController.navigate(
                     route = if (viewModel.isLogin) {
-                        HomeNavigation.route
+                        HomeNavigation.home.route
                     } else {
                         LoginNavigation.route
                     }
-                )
-            }
-        )
-
-        homeGraph(
-            navigationToLogin = {
-                navController.navigate(
-                    route = LoginNavigation.route
                 ) {
                     popUpTo(navController.graph.findStartDestination().id) {
                         inclusive = true
                     }
                 }
             }
+        )
+
+        homeGraph(
+            navController = navController
         )
 
         loginGraph(
@@ -64,7 +60,7 @@ fun StoryNavHost(
             },
             navigationToHome = {
                 navController.navigate(
-                    route = HomeNavigation.route
+                    route = HomeNavigation.home.route
                 )
             }
         )

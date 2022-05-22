@@ -7,7 +7,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import id.buaja.datastore.DataStoreManager
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -25,6 +26,7 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
+    @OptIn(DelicateCoroutinesApi::class)
     @Provides
     @Singleton
     fun provideOkhttpClient(dataStoreManager: DataStoreManager): OkHttpClient {
@@ -37,19 +39,20 @@ class NetworkModule {
             .writeTimeout(60L, TimeUnit.SECONDS)
             .addInterceptor { chain ->
                 val original = chain.request()
+                var token: String?
 
-                val token = runBlocking {
-                    dataStoreManager.getToken()
+                runBlocking {
+                    token = dataStoreManager.getTokens()
+
+                    if (!token.isNullOrEmpty()) {
+                        val authorized = original.newBuilder()
+                            .addHeader("Authorization", "Bearer $token")
+                            .build()
+                        chain.proceed(authorized)
+                    } else {
+                        chain.proceed(original)
+                    }
                 }
-                val request = original.newBuilder()
-
-                if (token.toString().isNotEmpty()) {
-                    request.header("Authorization", "Bearer ${dataStoreManager.getToken()}")
-                }
-
-                request.method(original.method, original.body)
-
-                return@addInterceptor chain.proceed(request.build())
             }
             .addInterceptor(logging)
             .build()
