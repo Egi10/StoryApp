@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.SubcomposeAsyncImage
 import id.buaja.home.R
+import id.buaja.home.domain.model.Story
 import id.buaja.home.ui.home.components.LoadingItem
 import id.buaja.ui.extensions.Space
 
@@ -27,9 +28,7 @@ import id.buaja.ui.extensions.Space
 
 @Composable
 fun DetailStoryScreen(
-    name: String,
-    photos: String,
-    description: String,
+    story: Story,
     onBackPressed: () -> Unit
 ) {
     Column(
@@ -66,19 +65,19 @@ fun DetailStoryScreen(
             content = {
                 item {
                     Text(
-                        text = name,
+                        text = story.name,
                         fontWeight = FontWeight.Bold,
                         fontSize = 18.sp
                     )
 
                     Text(
-                        text = description
+                        text = story.description
                     )
 
                     Space(size = 16.dp)
 
                     SubcomposeAsyncImage(
-                        model = photos,
+                        model = story.photoUrl,
                         contentDescription = null,
                         loading = {
                             LoadingItem()

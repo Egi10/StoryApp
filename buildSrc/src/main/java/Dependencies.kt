@@ -1,6 +1,7 @@
 object Dependencies {
     val moshiKotlin by lazy { "com.squareup.moshi:moshi-kotlin:${Versions.moshiKotlin}" }
     val coil by lazy { "io.coil-kt:coil-compose:${Versions.coil}" }
+    val compressor by lazy { "id.zelory:compressor:${Versions.compressor}" }
 
     object AndroidX {
         val coreKtx by lazy { "androidx.core:core-ktx:${Versions.AndroidX.coreKtx}" }

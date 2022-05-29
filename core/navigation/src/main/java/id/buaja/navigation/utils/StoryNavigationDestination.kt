@@ -1,4 +1,4 @@
-package id.buaja.navigation
+package id.buaja.navigation.utils
 
 /**
  * Created by Julsapargi Nursam on 5/21/22.

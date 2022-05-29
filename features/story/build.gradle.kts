@@ -4,8 +4,6 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
-    id("dagger.hilt.android.plugin")
-    id("kotlin-parcelize")
 }
 
 android {
@@ -52,21 +50,18 @@ dependencies {
 
     // Hilt
     implementationsHilt()
-    // Paging
-    implementation(Dependencies.AndroidX.paging)
-    implementation(Dependencies.Compose.paging)
     // Coil
     implementation(Dependencies.coil)
+    // Compressor
+    implementation(Dependencies.compressor)
     // Ui
     implementation(project(Module.Core.ui))
-    // Navigation
-    implementation(project(Module.Core.navigation))
-    // Data Store
-    implementation(project(Module.dataStore))
     // Network
     implementation(project(Module.network))
-    // Story
-    implementation(project(Module.Features.story))
+    // Common
+    implementation(project(Module.Core.common))
+    // Navigation
+    implementation(project(Module.Core.navigation))
 }
 
 kapt {

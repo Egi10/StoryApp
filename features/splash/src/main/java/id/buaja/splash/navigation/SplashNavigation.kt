@@ -2,7 +2,7 @@ package id.buaja.splash.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import id.buaja.navigation.StoryNavigationDestination
+import id.buaja.navigation.utils.StoryNavigationDestination
 import id.buaja.splash.SplashRoute
 
 /**

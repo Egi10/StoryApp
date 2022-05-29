@@ -1,6 +1,7 @@
 package id.buaja.home.ui.detail
 
 import androidx.compose.runtime.Composable
+import id.buaja.home.domain.model.Story
 
 /**
  * Created by Julsapargi Nursam on 5/22/22.
@@ -9,15 +10,11 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun DetailStoryRoute(
-    name: String,
-    photos: String,
-    description: String,
+    story: Story,
     onBackPressed: () -> Unit
 ) {
     DetailStoryScreen(
-        name = name,
-        photos = photos,
-        description = description,
+        story = story,
         onBackPressed = onBackPressed
     )
 }

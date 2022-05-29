@@ -55,3 +55,19 @@ fun fetchError(throwable: Throwable): Result.Error {
         }
     }
 }
+
+fun <T> Result<T>.isLoading(): Boolean {
+    return when (this) {
+        is Result.Loading -> {
+            true
+        }
+
+        is Result.Success<T> -> {
+            false
+        }
+
+        is Result.Error -> {
+            false
+        }
+    }
+}

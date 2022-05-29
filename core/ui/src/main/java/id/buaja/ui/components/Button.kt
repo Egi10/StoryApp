@@ -5,11 +5,16 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.sizeIn
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -24,6 +29,9 @@ import androidx.compose.ui.unit.sp
  * @param text The text to be displayed.
  * @param enabled Controls the enabled state of the button. When `false`, this button will not
  * be clickable
+ * @param minHeight To set the button height
+ * @param fontSize The size of glyphs to use when painting the text.
+ * @param shape Defines the button's shape as well as its shadow
  */
 
 @Composable
@@ -32,15 +40,19 @@ fun StoryButton(
     onClick: () -> Unit,
     text: String,
     enabled: Boolean = false,
-    loading: Boolean = false
+    loading: Boolean = false,
+    minHeight: Dp = 56.dp,
+    fontSize: TextUnit = 16.sp,
+    shape: Shape = MaterialTheme.shapes.small
 ) {
     Button(
         modifier = modifier
             .sizeIn(
-                minHeight = 56.dp
+                minHeight = minHeight
             ),
         onClick = onClick,
         enabled = enabled,
+        shape = shape,
         content = {
             if (loading) {
                 CircularProgressIndicator(
@@ -51,7 +63,7 @@ fun StoryButton(
             } else {
                 Text(
                     text = text,
-                    fontSize = 16.sp
+                    fontSize = fontSize
                 )
             }
         }

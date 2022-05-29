@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="new_story">New Story</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="placeholder_description">Descriptions</string>
+</resources>

@@ -5,6 +5,7 @@ object Versions {
     const val coroutine = "1.6.0"
     const val moshiKotlin = "1.13.0"
     const val coil = "2.1.0"
+    const val compressor = "3.0.1"
 
     object AndroidX {
         const val coreKtx = "1.7.0"

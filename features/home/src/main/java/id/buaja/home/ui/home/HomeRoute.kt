@@ -14,7 +14,8 @@ import id.buaja.home.domain.model.Story
 fun HomeRoute(
     viewModel: HomeViewModel = hiltViewModel(),
     navigationToLogin: () -> Unit,
-    navigationToDetail: (Story) -> Unit
+    navigationToDetail: (Story) -> Unit,
+    navigationToAddNewStory: () -> Unit,
 ) {
     val story = viewModel.getStory().collectAsLazyPagingItems()
 
@@ -24,6 +25,7 @@ fun HomeRoute(
             viewModel.clearToken()
             navigationToLogin.invoke()
         },
-        navigationToDetail = navigationToDetail
+        navigationToDetail = navigationToDetail,
+        navigationToAddNewStory = navigationToAddNewStory
     )
 }

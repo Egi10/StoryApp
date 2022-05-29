@@ -28,14 +28,15 @@ import id.buaja.ui.extensions.Space
 fun HomeScreen(
     story: LazyPagingItems<Story>,
     navigationToLogin: () -> Unit,
-    navigationToDetail: (Story) -> Unit
+    navigationToDetail: (Story) -> Unit,
+    navigationToAddNewStory: () -> Unit,
 ) {
     Scaffold(
         modifier = Modifier
             .fillMaxSize(),
         floatingActionButton = {
             FloatingActionButton(
-                onClick = { },
+                onClick = navigationToAddNewStory,
                 content = {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_baseline_add_24),
