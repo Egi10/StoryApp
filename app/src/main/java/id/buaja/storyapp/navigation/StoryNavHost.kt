@@ -6,12 +6,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import id.buaja.authentication.ui.login.navigation.LoginNavigation
-import id.buaja.authentication.ui.login.navigation.loginGraph
-import id.buaja.authentication.ui.register.navigation.RegisterNavigation
-import id.buaja.authentication.ui.register.navigation.registerGraph
-import id.buaja.home.navigation.HomeNavigation
+import id.buaja.authentication.navigation.authenticationGraph
 import id.buaja.home.navigation.homeGraph
+import id.buaja.navigation.AuthenticationNavigation
+import id.buaja.navigation.HomeNavigation
 import id.buaja.splash.navigation.splashGraph
 import id.buaja.storyapp.ui.StoryAppViewModel
 
@@ -38,7 +36,7 @@ fun StoryNavHost(
                     route = if (viewModel.isLogin) {
                         HomeNavigation.home.route
                     } else {
-                        LoginNavigation.route
+                        AuthenticationNavigation.login.route
                     }
                 ) {
                     popUpTo(navController.graph.findStartDestination().id) {
@@ -46,35 +44,14 @@ fun StoryNavHost(
                     }
                 }
             }
+        )
+
+        authenticationGraph(
+            navController = navController
         )
 
         homeGraph(
             navController = navController
-        )
-
-        loginGraph(
-            navigationToSignUp = {
-                navController.navigate(
-                    route = RegisterNavigation.route,
-                )
-            },
-            navigationToHome = {
-                navController.navigate(
-                    route = HomeNavigation.home.route
-                )
-            }
-        )
-
-        registerGraph(
-            navigationToLogin = {
-                navController.navigate(
-                    route = LoginNavigation.route
-                ) {
-                    popUpTo(navController.graph.findStartDestination().id) {
-                        inclusive = true
-                    }
-                }
-            }
         )
     }
 }

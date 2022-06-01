@@ -4,11 +4,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.rememberNavController
-import id.buaja.splash.navigation.SplashNavigation
+import id.buaja.navigation.SplashNavigation
 import id.buaja.storyapp.navigation.StoryNavHost
 import id.buaja.ui.thema.StoryAppTheme
 
