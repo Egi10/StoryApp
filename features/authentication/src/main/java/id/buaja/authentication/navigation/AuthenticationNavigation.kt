@@ -1,7 +1,6 @@
 package id.buaja.authentication.navigation
 
 import androidx.navigation.NavController
-import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
@@ -29,7 +28,11 @@ fun NavGraphBuilder.authenticationGraph(
                 navigationToSignUp = {
                     navController.navigate(
                         route = AuthenticationNavigation.register.route
-                    )
+                    ) {
+                        popUpTo(
+                            route = AuthenticationNavigation.login.route
+                        )
+                    }
                 },
                 navigationToHome = {
                     navController.navigate(
@@ -53,7 +56,9 @@ fun NavGraphBuilder.authenticationGraph(
                     navController.navigate(
                         route = AuthenticationNavigation.login.route
                     ) {
-                        popUpTo(navController.graph.findStartDestination().id) {
+                        popUpTo(
+                            route = AuthenticationNavigation.login.route
+                        ) {
                             inclusive = true
                         }
                     }
