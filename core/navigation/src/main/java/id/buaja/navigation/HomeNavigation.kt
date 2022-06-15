@@ -16,11 +16,4 @@ object HomeNavigation {
         override val destination: String
             get() = "destination_home"
     }
-
-    val detail = object : StoryNavigationDestination {
-        override val route: String
-            get() = "route_detail_home"
-        override val destination: String
-            get() = "destination_detail_home"
-    }
 }

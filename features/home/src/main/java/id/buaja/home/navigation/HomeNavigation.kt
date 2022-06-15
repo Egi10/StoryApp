@@ -4,10 +4,10 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import id.buaja.add_new_story.navigation.storyGraph
-import id.buaja.home.domain.model.Story
-import id.buaja.home.ui.detail.DetailStoryRoute
-import id.buaja.home.ui.home.HomeRoute
+import id.buaja.story.navigation.storyGraph
+import id.buaja.story.domain.model.Story
+import id.buaja.story.ui.details.DetailStoryRoute
+import id.buaja.story.ui.list.ListStoryRoute
 import id.buaja.navigation.AuthenticationNavigation
 import id.buaja.navigation.HomeNavigation
 import id.buaja.navigation.StoryNavigation
@@ -21,19 +21,19 @@ fun NavGraphBuilder.homeGraph(
     navController: NavController
 ) {
     navigation(
-        startDestination = HomeNavigation.home.route,
+        startDestination = StoryNavigation.list.route,
         route = HomeNavigation.route
     ) {
         composable(
-            route = HomeNavigation.home.route
+            route = StoryNavigation.list.route
         ) {
-            HomeRoute(
+            ListStoryRoute(
                 navigationToLogin = {
                     navController.navigate(
                         route = AuthenticationNavigation.login.route
                     ) {
                         popUpTo(
-                            route = HomeNavigation.home.route
+                            route = StoryNavigation.list.route
                         ) {
                             inclusive = true
                         }
@@ -46,10 +46,10 @@ fun NavGraphBuilder.homeGraph(
                         )
                     }
                     navController.navigate(
-                        route = HomeNavigation.detail.route,
+                        route = StoryNavigation.detail.route,
                     ) {
                         popUpTo(
-                            route = HomeNavigation.home.route
+                            route = StoryNavigation.list.route
                         )
                     }
                 },
@@ -58,7 +58,7 @@ fun NavGraphBuilder.homeGraph(
                         route = StoryNavigation.addNewStory.route
                     ) {
                         popUpTo(
-                            route = HomeNavigation.home.route
+                            route = StoryNavigation.list.route
                         )
                     }
                 }
@@ -66,7 +66,7 @@ fun NavGraphBuilder.homeGraph(
         }
 
         composable(
-            route = HomeNavigation.detail.route,
+            route = StoryNavigation.detail.route,
         ) {
             val story =
                 navController.previousBackStackEntry?.arguments?.getParcelable<Story>("story")

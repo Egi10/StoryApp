@@ -10,6 +10,7 @@ import id.buaja.authentication.navigation.authenticationGraph
 import id.buaja.home.navigation.homeGraph
 import id.buaja.navigation.AuthenticationNavigation
 import id.buaja.navigation.HomeNavigation
+import id.buaja.navigation.StoryNavigation
 import id.buaja.splash.navigation.splashGraph
 import id.buaja.storyapp.ui.StoryAppViewModel
 
@@ -34,7 +35,7 @@ fun StoryNavHost(
             navigationToHome = {
                 navController.navigate(
                     route = if (viewModel.isLogin) {
-                        HomeNavigation.home.route
+                        StoryNavigation.list.route
                     } else {
                         AuthenticationNavigation.login.route
                     }
