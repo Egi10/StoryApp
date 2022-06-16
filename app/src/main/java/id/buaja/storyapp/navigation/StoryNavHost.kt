@@ -29,7 +29,6 @@ fun StoryNavHost(
         navController = navController,
         startDestination = startDestination,
         modifier = modifier,
-        route = "ROOT_NAV_HOST"
     ) {
         splashGraph(
             navigationToHome = {
