@@ -2,4 +2,5 @@
 <resources>
     <string name="log_out">Log out</string>
     <string name="home">Home</string>
+    <string name="maps">Maps</string>
 </resources>

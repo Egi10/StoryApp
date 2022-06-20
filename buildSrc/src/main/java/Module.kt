@@ -13,5 +13,6 @@ object Module {
         const val home = ":features:home"
         const val splash = ":features:splash"
         const val story = ":features:story"
+        const val maps = ":features:maps"
     }
 }

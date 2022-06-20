@@ -1,3 +1,5 @@
+import extensions.implementationCompose
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -45,12 +47,10 @@ android {
 
 dependencies {
 
-    // Ui
-    implementation(project(Module.Core.ui))
-    // Navigation
-    implementation(project(Module.Core.navigation))
-    // Story
-    implementation(project(Module.Features.story))
-    // Maps
-    implementation(project(Module.Features.maps))
+    // Compose
+    implementationCompose()
+    // Test
+    testImplementation(Dependencies.Test.jUnit)
+    androidTestImplementation(Dependencies.Test.jUnitAndroid)
+    androidTestImplementation(Dependencies.Test.espressoCore)
 }

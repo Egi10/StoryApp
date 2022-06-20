@@ -2,7 +2,6 @@ package id.buaja.home.navigation
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Lock
@@ -17,8 +16,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import id.buaja.home.R
 import id.buaja.home.ui.HomeRoute
+import id.buaja.maps.ui.MapsRoute
 import id.buaja.navigation.AuthenticationNavigation
 import id.buaja.navigation.HomeNavigation
+import id.buaja.navigation.MapsNavigation
 import id.buaja.navigation.StoryNavigation
 import id.buaja.story.domain.model.Story
 import id.buaja.story.navigation.storyGraph
@@ -45,10 +46,10 @@ val HOME_DESTINATION = listOf(
         iconTextId = R.string.home
     ),
     HomeDestination(
-        route = "Maps",
+        route = MapsNavigation.route,
         selectedIcon = Icons.Filled.Lock,
         unselectedIcon = Icons.Outlined.Lock,
-        iconTextId = R.string.home
+        iconTextId = R.string.maps
     ),
 )
 
@@ -82,8 +83,10 @@ fun NavGraphBuilder.homeGraph(
                                 )
                             }
 
-                            "Maps" -> {
-                                Text(text = "Tes")
+                            MapsNavigation.route -> {
+                                Maps(
+                                    navController = navController
+                                )
                             }
                         }
                     }
@@ -156,4 +159,9 @@ private fun Story(navController: NavController) {
             }
         }
     )
+}
+
+@Composable
+private fun Maps(navController: NavController) {
+    MapsRoute()
 }
