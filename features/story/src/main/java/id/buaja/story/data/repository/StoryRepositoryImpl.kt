@@ -25,9 +25,16 @@ class StoryRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteDataSource
 ) : StoryRepository {
 
-    override fun addNewStory(description: String, photo: File): Flow<Result<AddNewStory>> {
+    override fun addNewStory(
+        description: String,
+        lat: Float,
+        lon: Float,
+        photo: File
+    ): Flow<Result<AddNewStory>> {
         return remoteDataSource.addNewStory(
             description = description,
+            lat = lat,
+            lon = lon,
             photo = photo
         ).map {
             it.mapTopAddStory()

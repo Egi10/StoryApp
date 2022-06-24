@@ -1,15 +1,17 @@
 package id.buaja.story.ui.add
 
+import android.app.Application
 import android.net.Uri
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import id.buaja.common.LocationLiveData
+import id.buaja.common.result.Result
+import id.buaja.common.result.isLoading
 import id.buaja.story.domain.usecase.add.AddNewStoryUseCase
 import id.buaja.story.ui.add.model.AddNewStoryEventState
 import id.buaja.story.ui.add.model.AddNewStoryScreenUiState
 import id.buaja.story.ui.add.model.AddNewStoryUiState
-import id.buaja.common.result.Result
-import id.buaja.common.result.isLoading
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -23,10 +25,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddNewStoryViewModel @Inject constructor(
+    application: Application,
     private val addNewStoryUseCase: AddNewStoryUseCase,
-): ViewModel() {
+): AndroidViewModel(application) {
     private val _uiState = MutableStateFlow(AddNewStoryScreenUiState())
     val uiState = _uiState.asStateFlow()
+
+    private val _locationState = LocationLiveData(application)
+    val locationState get() = _locationState
 
     fun onEvent(event: AddNewStoryEventState) {
         when(event) {
@@ -47,7 +53,10 @@ class AddNewStoryViewModel @Inject constructor(
             }
 
             is AddNewStoryEventState.Upload -> {
-                addNewStory()
+                addNewStory(
+                    lat = event.lat,
+                    lon = event.lon
+                )
             }
         }
     }
@@ -56,10 +65,15 @@ class AddNewStoryViewModel @Inject constructor(
         return _uiState.value.description.isNotEmpty() && _uiState.value.photo != Uri.EMPTY
     }
 
-    private fun addNewStory() {
+    private fun addNewStory(
+        lat: Float,
+        lon: Float
+    ) {
         viewModelScope.launch {
             addNewStoryUseCase.invoke(
                 description = _uiState.value.description,
+                lat = lat,
+                lon = lon,
                 photo = _uiState.value.photo
             ).collect { result ->
                 val addNewStoryState = when (result) {
@@ -86,6 +100,10 @@ class AddNewStoryViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    fun startLocationUpdate() {
+        _locationState.startLocationUpdate()
     }
 
     fun clearState() {

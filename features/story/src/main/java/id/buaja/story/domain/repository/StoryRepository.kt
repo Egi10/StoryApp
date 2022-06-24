@@ -15,6 +15,8 @@ import java.io.File
 interface StoryRepository {
     fun addNewStory(
         description: String,
+        lat: Float,
+        lon: Float,
         photo: File
     ): Flow<Result<AddNewStory>>
 

@@ -13,6 +13,8 @@ import kotlinx.coroutines.flow.Flow
 interface AddNewStoryUseCase {
     operator fun invoke(
         description: String,
+        lat: Float,
+        lon: Float,
         photo: Uri
     ): Flow<Result<AddNewStory>>
 }

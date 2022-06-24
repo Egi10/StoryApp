@@ -19,7 +19,12 @@ class AddNewStoryUseCaseImpl @Inject constructor(
     private val storyRepository: StoryRepository,
     @ApplicationContext private val context: Context
 ) : AddNewStoryUseCase {
-    override fun invoke(description: String, photo: Uri): Flow<Result<AddNewStory>> {
+    override fun invoke(
+        description: String,
+        lat: Float,
+        lon: Float,
+        photo: Uri
+    ): Flow<Result<AddNewStory>> {
         val file = uriToFile(
             selectedImg = photo,
             context = context
@@ -27,6 +32,8 @@ class AddNewStoryUseCaseImpl @Inject constructor(
 
         return storyRepository.addNewStory(
             description = description,
+            lat = lat,
+            lon = lon,
             photo = file
         )
     }

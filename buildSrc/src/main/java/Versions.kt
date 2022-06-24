@@ -6,6 +6,9 @@ object Versions {
     const val moshiKotlin = "1.13.0"
     const val coil = "2.1.0"
     const val compressor = "3.0.1"
+    const val playServiceMaps = "18.0.2"
+    const val playServiceLocation = "20.0.0"
+    const val accompanistPermissions = "0.24.11-rc"
 
     object AndroidX {
         const val coreKtx = "1.7.0"
@@ -21,6 +24,7 @@ object Versions {
         const val activityCompose = "1.3.1"
         const val navigation = "2.4.2"
         const val paging = "1.0.0-alpha14"
+        const val maps = "1.0.0"
     }
 
     object Test {

@@ -9,7 +9,10 @@ import android.os.Environment
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -35,6 +38,7 @@ fun AddNewStoryRoute(
     var uri: Uri = Uri.EMPTY
 
     val uiState = viewModel.uiState.collectAsState()
+    val locationState = viewModel.locationState.observeAsState()
 
     val cameraLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.TakePicture(),
@@ -63,12 +67,36 @@ fun AddNewStoryRoute(
         }
     )
 
+    val requestPermissionLocationLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestMultiplePermissions(),
+        onResult = {
+            if (it.isEmpty()) {
+                val message = context.getString(id.buaja.ui.R.string.not_permission)
+                context.toast(message)
+            } else {
+                viewModel.startLocationUpdate()
+            }
+        }
+    )
+
     val galleryLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent(),
         onResult = {
             viewModel.onEvent(
                 event = AddNewStoryEventState.PhotoChanged(
                     uri = it
+                )
+            )
+        }
+    )
+
+    LaunchedEffect(
+        key1 = requestPermissionLocationLauncher,
+        block = {
+            requestPermissionLocationLauncher.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_COARSE_LOCATION,
+                    Manifest.permission.ACCESS_FINE_LOCATION,
                 )
             )
         }
@@ -91,7 +119,7 @@ fun AddNewStoryRoute(
                     )
                 }
 
-                else -> {}
+                else -> { }
             }
         }
     )
@@ -137,7 +165,10 @@ fun AddNewStoryRoute(
         },
         onUploadClick = {
             viewModel.onEvent(
-                event = AddNewStoryEventState.Upload
+                event = AddNewStoryEventState.Upload(
+                    lat = locationState.value?.latitude?.toFloat() ?: 0f,
+                    lon = locationState.value?.longitude?.toFloat() ?: 0f
+                )
             )
         },
         uri = uiState.value.photo,

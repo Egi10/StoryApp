@@ -2,6 +2,9 @@ object Dependencies {
     val moshiKotlin by lazy { "com.squareup.moshi:moshi-kotlin:${Versions.moshiKotlin}" }
     val coil by lazy { "io.coil-kt:coil-compose:${Versions.coil}" }
     val compressor by lazy { "id.zelory:compressor:${Versions.compressor}" }
+    val playServiceMaps by lazy { "com.google.android.gms:play-services-maps:${Versions.playServiceMaps}" }
+    val playServiceLocation by lazy { "com.google.android.gms:play-services-location:${Versions.playServiceLocation}" }
+    val accompanistPermissions by lazy { "com.google.accompanist:accompanist-permissions:${Versions.accompanistPermissions}" }
 
     object AndroidX {
         val coreKtx by lazy { "androidx.core:core-ktx:${Versions.AndroidX.coreKtx}" }
@@ -43,6 +46,16 @@ object Dependencies {
          * Navigation
          */
         val navigation by lazy { "androidx.navigation:navigation-compose:${Versions.Compose.navigation}" }
+
+        /**
+         * Maps
+         */
+        val maps by lazy { "com.google.maps.android:maps-compose:${Versions.Compose.maps}" }
+
+        /**
+         * LiveData
+         */
+        val liveData by lazy { "androidx.compose.runtime:runtime-livedata:${Versions.Compose.compose}" }
     }
 
     object Hilt {

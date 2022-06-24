@@ -46,6 +46,8 @@ dependencies {
     implementationsHilt()
     // Retrofit
     implementation(Dependencies.Retrofit.retrofit)
+    // Location
+    implementation(Dependencies.playServiceLocation)
 }
 
 kapt {

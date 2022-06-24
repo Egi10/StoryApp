@@ -16,6 +16,8 @@ interface StoryService {
     @POST("stories")
     suspend fun addNewStory(
         @Part("description") description: RequestBody,
+        @Part("lat") lat: RequestBody,
+        @Part("lon") lon: RequestBody,
         @Part photo: MultipartBody.Part
     ): AddNewStoryResponse
 

@@ -36,7 +36,12 @@ class RemoteDataSourceImpl @Inject constructor(
     @DefaultDispatcher private val defaultDispatcher: CoroutineDispatcher,
     @ApplicationContext private val context: Context
 ) : RemoteDataSource {
-    override fun addNewStory(description: String, photo: File) = flow {
+    override fun addNewStory(
+        description: String,
+        lat: Float,
+        lon: Float,
+        photo: File
+    ) = flow {
         val filePhoto = Compressor.compress(
             context = context,
             imageFile = photo,
@@ -51,10 +56,16 @@ class RemoteDataSourceImpl @Inject constructor(
         }
 
         val requestDescription = description.toRequestBody(
-            contentType = "text/plain".toMediaTypeOrNull()
+            contentType = CONTENT_TYPE.toMediaTypeOrNull()
+        )
+        val requestLat = lat.toString().toRequestBody(
+            contentType = CONTENT_TYPE.toMediaTypeOrNull()
+        )
+        val requestLon = lon.toString().toRequestBody(
+            contentType = CONTENT_TYPE.toMediaTypeOrNull()
         )
         val requestPhoto = filePhoto.asRequestBody(
-            contentType = "image/jpeg".toMediaTypeOrNull()
+            contentType = CONTENT_TYPE.toMediaTypeOrNull()
         )
         val imageMultipart: MultipartBody.Part = MultipartBody.Part.createFormData(
             "photo",
@@ -65,7 +76,9 @@ class RemoteDataSourceImpl @Inject constructor(
         emit(
             storyService.addNewStory(
                 description = requestDescription,
-                photo = imageMultipart
+                photo = imageMultipart,
+                lat = requestLat,
+                lon = requestLon
             )
         )
     }.flowOn(ioDispatcher)
@@ -111,5 +124,9 @@ class RemoteDataSourceImpl @Inject constructor(
             }
 
         }
+    }
+
+    companion object {
+        private const val CONTENT_TYPE = "text/plain"
     }
 }

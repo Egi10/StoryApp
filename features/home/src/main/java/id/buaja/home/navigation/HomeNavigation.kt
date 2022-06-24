@@ -4,9 +4,11 @@ import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Lock
+import androidx.compose.material.icons.outlined.LocationOn
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -47,8 +49,14 @@ val HOME_DESTINATION = listOf(
     ),
     HomeDestination(
         route = MapsNavigation.route,
-        selectedIcon = Icons.Filled.Lock,
-        unselectedIcon = Icons.Outlined.Lock,
+        selectedIcon = Icons.Filled.LocationOn,
+        unselectedIcon = Icons.Outlined.LocationOn,
+        iconTextId = R.string.maps
+    ),
+    HomeDestination(
+        route = "Profile",
+        selectedIcon = Icons.Filled.Person,
+        unselectedIcon = Icons.Outlined.Person,
         iconTextId = R.string.maps
     ),
 )

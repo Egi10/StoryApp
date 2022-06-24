@@ -1,8 +1,10 @@
-import extensions.implementationCompose
+import extensions.implementationsHilt
 
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -48,9 +50,26 @@ android {
 dependencies {
 
     // Compose
-    implementationCompose()
+    implementation(Dependencies.Compose.maps)
+    // Play Service
+    implementation(Dependencies.playServiceMaps)
+    // Retrofit
+    implementation(Dependencies.Retrofit.retrofit)
+    implementation(Dependencies.Retrofit.moshi)
+    // Hilt
+    implementationsHilt()
     // Test
     testImplementation(Dependencies.Test.jUnit)
     androidTestImplementation(Dependencies.Test.jUnitAndroid)
     androidTestImplementation(Dependencies.Test.espressoCore)
+    // Ui
+    implementation(project(Module.Core.ui))
+    // Common
+    implementation(project(Module.Core.common))
+    // Navigation
+    implementation(project(Module.Core.navigation))
+    // Permission
+    implementation(Dependencies.accompanistPermissions)
+    // Live Data Compose
+    implementation(Dependencies.Compose.liveData)
 }

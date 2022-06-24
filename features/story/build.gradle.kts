@@ -68,6 +68,8 @@ dependencies {
     implementation(project(Module.Core.navigation))
     // Data Store
     implementation(project(Module.dataStore))
+    // Live Data Compose
+    implementation(Dependencies.Compose.liveData)
 }
 
 kapt {

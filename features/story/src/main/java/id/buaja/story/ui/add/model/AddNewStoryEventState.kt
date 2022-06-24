@@ -11,5 +11,5 @@ sealed class AddNewStoryEventState {
     data class DescriptionsChanged(val description: String): AddNewStoryEventState()
     data class PhotoChanged(val uri: Uri): AddNewStoryEventState()
 
-    object Upload : AddNewStoryEventState()
+    data class Upload(val lat: Float, val lon: Float) : AddNewStoryEventState()
 }

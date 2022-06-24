@@ -14,6 +14,8 @@ import java.io.File
 interface RemoteDataSource {
     fun addNewStory(
         description: String,
+        lat: Float,
+        lon: Float,
         photo: File
     ): Flow<AddNewStoryResponse>
 
