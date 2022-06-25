@@ -62,14 +62,19 @@ dependencies {
     testImplementation(Dependencies.Test.jUnit)
     androidTestImplementation(Dependencies.Test.jUnitAndroid)
     androidTestImplementation(Dependencies.Test.espressoCore)
+    // Permission
+    implementation(Dependencies.accompanistPermissions)
+    // Live Data Compose
+    implementation(Dependencies.Compose.liveData)
+    // Coil
+    implementation(Dependencies.coil)
     // Ui
     implementation(project(Module.Core.ui))
     // Common
     implementation(project(Module.Core.common))
     // Navigation
     implementation(project(Module.Core.navigation))
-    // Permission
-    implementation(Dependencies.accompanistPermissions)
-    // Live Data Compose
-    implementation(Dependencies.Compose.liveData)
+    //
+    debugImplementation("androidx.customview:customview:1.1.0")
+    debugImplementation("androidx.customview:customview-poolingcontainer:1.0.0-rc01")
 }

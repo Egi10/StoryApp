@@ -1,6 +1,6 @@
 package extensions
 
-import org.gradle.api.artifacts.Dependency
+import Dependencies
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
 fun DependencyHandler.implementationCoroutines() {

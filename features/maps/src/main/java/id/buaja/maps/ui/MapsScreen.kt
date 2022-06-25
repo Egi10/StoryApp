@@ -3,6 +3,7 @@ package id.buaja.maps.ui
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
@@ -42,4 +43,14 @@ fun MapsScreen(
             )
         }
     }
+}
+
+@Preview
+@Composable
+private fun MapsScreenPreview() {
+    MapsScreen(
+        mapsUiState = MapsUiState(),
+        lat = 0.0,
+        long = 0.0
+    )
 }

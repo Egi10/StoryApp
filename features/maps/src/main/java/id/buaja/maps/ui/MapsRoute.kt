@@ -18,7 +18,8 @@ import id.buaja.ui.extensions.toast
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun MapsRoute(
-    viewModel: MapsViewModel = hiltViewModel()
+    viewModel: MapsViewModel = hiltViewModel(),
+    onNavigationToAddStory: () -> Unit,
 ) {
     val context = LocalContext.current
     val uiState = viewModel.uiState.collectAsState().value
@@ -53,6 +54,8 @@ fun MapsRoute(
             long = locationState.value?.longitude ?: uiState.data[0].lon
         )
     } else {
-        // TODO Empty State
+        MapsEmptyScreen(
+            onNavigationToAddStory = onNavigationToAddStory
+        )
     }
 }

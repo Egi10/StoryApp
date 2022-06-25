@@ -171,5 +171,15 @@ private fun Story(navController: NavController) {
 
 @Composable
 private fun Maps(navController: NavController) {
-    MapsRoute()
+    MapsRoute(
+        onNavigationToAddStory = {
+            navController.navigate(
+                route = StoryNavigation.addNewStory.route
+            ) {
+                popUpTo(
+                    route = MapsNavigation.route
+                )
+            }
+        }
+    )
 }
