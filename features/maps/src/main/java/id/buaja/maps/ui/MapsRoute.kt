@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -78,6 +79,12 @@ fun MapsRoute(
     if (uiState.isEmpty) {
         MapsEmptyScreen(
             onNavigationToAddStory = onNavigationToAddStory
+        )
+    }
+
+    if (uiState.error.isNotEmpty()) {
+        Text(
+            text = uiState.error
         )
     }
 }
