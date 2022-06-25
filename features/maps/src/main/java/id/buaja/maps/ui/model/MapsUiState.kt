@@ -9,6 +9,7 @@ import id.buaja.maps.domain.model.StoryMaps
 
 data class MapsUiState(
     val loading: Boolean = false,
+    val isEmpty: Boolean = false,
     val data: List<StoryMaps> = emptyList(),
     val error: String = "",
     val locationNow: Boolean = false

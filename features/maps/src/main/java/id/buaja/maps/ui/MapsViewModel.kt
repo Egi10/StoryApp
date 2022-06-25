@@ -48,12 +48,22 @@ class MapsViewModel @Inject constructor(
                         }
 
                         is Result.Success -> {
-                            _uiState.update { state ->
-                                state.copy(
-                                    loading = false,
-                                    data = it.data
-                                )
+                            if (it.data.isEmpty()) {
+                                _uiState.update { state ->
+                                    state.copy(
+                                        isEmpty = true
+                                    )
+                                }
+                            } else {
+                                _uiState.update { state ->
+                                    state.copy(
+                                        loading = false,
+                                        data = it.data,
+                                        isEmpty = false
+                                    )
+                                }
                             }
+
                         }
 
                         is Result.Error -> {
