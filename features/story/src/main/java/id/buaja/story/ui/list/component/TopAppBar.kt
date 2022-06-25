@@ -1,4 +1,4 @@
-package id.buaja.home.ui.home.components
+package id.buaja.story.ui.list.component
 
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.*
@@ -19,7 +19,7 @@ import id.buaja.ui.extensions.Space
  */
 
 @Composable
-fun HomeTopAppBar(
+internal fun HomeTopAppBar(
     title: String,
     titleColors: Color = MaterialTheme.colors.primaryVariant,
     @DrawableRes actionIcons: Int? = null,

@@ -30,7 +30,7 @@ import id.buaja.story.R
  */
 
 @Composable
-fun StoryItem(
+internal fun StoryItem(
     item: Story?,
     position: Int,
     onClick: (Story) -> Unit
