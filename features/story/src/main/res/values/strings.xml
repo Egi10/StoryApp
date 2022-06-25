@@ -6,4 +6,5 @@
     <string name="placeholder_description">Descriptions</string>
     <string name="log_out">Log out</string>
     <string name="home">Home</string>
+    <string name="story_details">Story Details</string>
 </resources>
