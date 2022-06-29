@@ -176,7 +176,7 @@ fun isErrorValidationEmail(email: String): Boolean {
 fun isErrorValidationPassword(password: String): Boolean {
     return if (password.isEmpty()) {
         false
-    } else password.length < 8
+    } else password.length < 6
 }
 
 @Preview(showBackground = true)

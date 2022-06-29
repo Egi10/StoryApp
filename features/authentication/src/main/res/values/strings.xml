@@ -10,7 +10,7 @@
     <string name="placeholder_password">Enter your password</string>
     <string name="sign_up">Sign Up</string>
     <string name="message_email_error">Enter email correctly</string>
-    <string name="message_error_password">Enter a password of at least 8</string>
+    <string name="message_error_password">Enter a password of at least 6</string>
     <string name="sign_in">Sign In</string>
     <string name="welcome_back">Welcome back,</string>
     <string name="message_welcome_back">Let\'s update the story again today</string>
