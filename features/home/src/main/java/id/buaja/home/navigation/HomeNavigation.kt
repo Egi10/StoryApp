@@ -129,7 +129,7 @@ private fun Story(navController: NavController) {
                 route = AuthenticationNavigation.login.route
             ) {
                 popUpTo(
-                    route = StoryNavigation.list.route
+                    navController.currentBackStackEntry?.destination?.route ?: return@navigate
                 ) {
                     inclusive = true
                 }
