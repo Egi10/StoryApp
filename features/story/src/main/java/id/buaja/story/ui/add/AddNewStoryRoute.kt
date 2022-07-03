@@ -11,7 +11,6 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
@@ -20,6 +19,7 @@ import androidx.core.content.FileProvider
 import androidx.hilt.navigation.compose.hiltViewModel
 import id.buaja.story.ui.add.model.AddNewStoryEventState
 import id.buaja.story.ui.add.model.AddNewStoryUiState
+import id.buaja.ui.extensions.collectAsStateLifecycleAware
 import id.buaja.ui.extensions.toast
 import java.io.File
 
@@ -37,7 +37,7 @@ fun AddNewStoryRoute(
     val context = LocalContext.current
     var uri: Uri = Uri.EMPTY
 
-    val uiState = viewModel.uiState.collectAsState()
+    val uiState = viewModel.uiState.collectAsStateLifecycleAware()
     val locationState = viewModel.locationState.observeAsState()
 
     val cameraLauncher = rememberLauncherForActivityResult(

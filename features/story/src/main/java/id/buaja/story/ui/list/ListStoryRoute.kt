@@ -2,8 +2,8 @@ package id.buaja.story.ui.list
 
 import androidx.compose.runtime.Composable
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.paging.compose.collectAsLazyPagingItems
 import id.buaja.story.domain.model.Story
+import id.buaja.ui.extensions.collectAsLazyPagingItemsLifecycleAware
 
 /**
  * Created by Julsapargi Nursam on 5/21/22.
@@ -17,7 +17,7 @@ fun ListStoryRoute(
     navigationToDetail: (Story) -> Unit,
     navigationToAddNewStory: () -> Unit,
 ) {
-    val story = viewModel.getStory().collectAsLazyPagingItems()
+    val story = viewModel.getStory().collectAsLazyPagingItemsLifecycleAware()
 
     ListStoryScreen(
         story = story,

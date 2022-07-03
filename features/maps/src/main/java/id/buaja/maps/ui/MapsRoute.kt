@@ -7,7 +7,6 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -16,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
+import id.buaja.ui.extensions.collectAsStateLifecycleAware
 import id.buaja.ui.extensions.toast
 
 /**
@@ -30,7 +30,7 @@ fun MapsRoute(
     onNavigationToAddStory: () -> Unit,
 ) {
     val context = LocalContext.current
-    val uiState = viewModel.uiState.collectAsState().value
+    val uiState = viewModel.uiState.collectAsStateLifecycleAware().value
     val locationState = viewModel.locationState.observeAsState()
 
     val locationPermissionsState = rememberMultiplePermissionsState(

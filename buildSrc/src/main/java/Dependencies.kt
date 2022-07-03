@@ -56,6 +56,11 @@ object Dependencies {
          * LiveData
          */
         val liveData by lazy { "androidx.compose.runtime:runtime-livedata:${Versions.Compose.compose}" }
+
+        /**
+         * Lifecycle
+         */
+        val lifecycleViewModel by lazy { "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.Compose.lifecycleViewModel}" }
     }
 
     object Hilt {

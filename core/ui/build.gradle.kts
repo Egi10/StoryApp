@@ -52,4 +52,10 @@ dependencies {
     implementationCompose()
     // ViewModel
     api(Dependencies.AndroidX.viewModel)
+    // Lifecycle
+    api(Dependencies.Compose.lifecycleViewModel)
+    api(Dependencies.AndroidX.lifecycleRuntimeKtx)
+    // Paging
+    implementation(Dependencies.AndroidX.paging)
+    implementation(Dependencies.Compose.paging)
 }

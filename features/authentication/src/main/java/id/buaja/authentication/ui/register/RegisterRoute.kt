@@ -1,9 +1,9 @@
 package id.buaja.authentication.ui.register
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import id.buaja.authentication.ui.register.model.RegisterEventState
+import id.buaja.ui.extensions.collectAsStateLifecycleAware
 
 /**
  * Created by Julsapargi Nursam on 5/20/22.
@@ -15,7 +15,7 @@ fun RegisterRoute(
     viewModel: RegisterViewModel = hiltViewModel(),
     navigationToLogin: () -> Unit
 ) {
-    val uiState = viewModel.uiState.collectAsState()
+    val uiState = viewModel.uiState.collectAsStateLifecycleAware()
 
     RegisterScreen(
         registerUiState = uiState.value.registerState,

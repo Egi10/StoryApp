@@ -1,9 +1,9 @@
 package id.buaja.authentication.ui.login
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
 import id.buaja.authentication.ui.login.model.LoginEventState
+import id.buaja.ui.extensions.collectAsStateLifecycleAware
 
 /**
  * Created by Julsapargi Nursam on 5/21/22.
@@ -16,7 +16,7 @@ fun LoginRoute(
     navigationToHome: () -> Unit,
     viewModel: LoginViewModel = hiltViewModel()
 ) {
-    val uiState = viewModel.uiState.collectAsState()
+    val uiState = viewModel.uiState.collectAsStateLifecycleAware()
 
     LoginScreen(
         uiState = uiState.value.loginState,
