@@ -20,6 +20,7 @@ object Versions {
     }
 
     object Compose {
+        const val composeCompiler = "1.2.0"
         const val compose = "1.1.1"
         const val activityCompose = "1.3.1"
         const val navigation = "2.4.2"
