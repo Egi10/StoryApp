@@ -92,4 +92,9 @@ object Dependencies {
         val jUnitAndroid by lazy { "androidx.test.ext:junit:${Versions.Test.jUnitAndroid}" }
         val espressoCore by lazy { "androidx.test.espresso:espresso-core:${Versions.Test.espressoCore}" }
     }
+
+    object ComposeDestination {
+        val core by lazy { "io.github.raamcosta.compose-destinations:core:${Versions.composeDestination}" }
+        val ksp by lazy { "io.github.raamcosta.compose-destinations:ksp:${Versions.composeDestination}" }
+    }
 }

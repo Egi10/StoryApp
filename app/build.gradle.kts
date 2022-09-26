@@ -1,10 +1,12 @@
 import extensions.implementation
+import extensions.ksp
 
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
+    id("com.google.devtools.ksp") version "1.7.0-1.0.6"
 }
 
 android {
@@ -42,6 +44,15 @@ android {
     buildFeatures {
         compose = true
     }
+    
+    applicationVariants.all {
+        kotlin.sourceSets {
+            getByName(name) {
+                kotlin.srcDir("build/generated/ksp/$name/kotlin")
+            }
+        }
+    }
+
     composeOptions {
         kotlinCompilerExtensionVersion = Versions.Compose.composeCompiler
     }
@@ -64,6 +75,9 @@ dependencies {
     kapt(Dependencies.Hilt.compiler)
     // ViewModel
     implementation(Dependencies.AndroidX.viewModel)
+    // Compose Destination
+    implementation(Dependencies.ComposeDestination.core)
+    ksp(Dependencies.ComposeDestination.ksp)
     // Network
     implementation(project(Module.network))
     // Ui

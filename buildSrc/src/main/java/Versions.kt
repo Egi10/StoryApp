@@ -9,6 +9,7 @@ object Versions {
     const val playServiceMaps = "18.0.2"
     const val playServiceLocation = "20.0.0"
     const val accompanistPermissions = "0.24.11-rc"
+    const val composeDestination = "1.7.21-beta"
 
     object AndroidX {
         const val coreKtx = "1.7.0"
